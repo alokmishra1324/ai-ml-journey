@@ -133,3 +133,79 @@ def merge_lists(list1, list2):
 
 merged_sorted_list = merge_lists(listone , listtwo)
 print(merged_sorted_list)
+
+
+##Rotate list
+lst2 = [4,5,6,1,3,8]
+def rotate_list(list1 , k):
+    k = k%(len(list1))
+    return list1[-2:] + list1[:-2]
+
+print(rotate_list(lst2 , 2))
+
+
+def rotate_list2(list1 , k):
+    k = k%(len(list1))
+
+    def reverse(start , end):
+        while(start <end):
+            list1[start] , list1[end] = list1[end] , list1[start]
+            start += 1
+            end  -= 1
+    
+    reverse(0 , len(list1)-1)
+    reverse(0 , k-1)
+    reverse(k , len(list1)-1)
+
+
+print(rotate_list(lst2 , 2))
+
+##merge 2 list into dictionary
+numbers1 = [1,2,3]
+numbers2 = [4,5,6]
+
+merge_list = dict(zip(numbers1 , numbers2))
+print(merge_list)
+
+
+## merge multiple dictionary
+dict1 = {"a":1 , "b":2}
+dict2 = {"c":3 , "d":4}
+dict3 = {"e":6 , "f" :7}
+merges_dict = {**dict1 , **dict2 , **dict3}
+print(merges_dict)
+
+##word frequency in sentence
+
+greet = "Hello everyone, welcome to python tutorial hello"
+
+def word_count(msg):
+    frequency = {}
+    words = msg.split()
+    for word in words:
+        word = word.lower().strip('.,!?;:"\'')
+        frequency[word] = frequency.get(word ,0)+1
+    return frequency
+
+print(word_count(greet)) 
+
+
+##merge dictionaries with common keys
+
+d1 = {"a" :1, "b":2}
+d2 = {"a" :3 , "b" :4}
+d3 = {"a" :5 , "b" :6}
+
+d1.update(d2)
+d1.update(d3)
+
+print(d1)
+
+##pallindromic tuple
+
+tup= ("a man a plan a canal panama")
+def check_pallindromic_tuple(tup1):
+    tup1 = tup1.lower().replace(" ", "")
+    return tup1 == tup1[::-1]
+
+print(check_pallindromic_tuple(tup))
