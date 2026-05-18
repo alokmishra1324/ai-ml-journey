@@ -127,3 +127,53 @@ def ind_func(list1 , index):
 lst = [1,8,6,3,6]
 print(ind_func(lst , 4))
 print(ind_func(lst , 9))
+
+
+
+## Write a function that attempts to open a URL and read its contents.
+#  Use try, except, and finally blocks to handle network-related errors and print an appropriate message.
+
+import urllib.request
+import urllib.error
+
+def read_url(url):
+    try:
+        response = urllib.request.urlopen(url)
+        content = response.read().decode('utf-8')
+        print("URL opned successfully!")
+        print("Content: ")
+        print(content[:500])     ## Print first 500 characters
+    except urllib.error.HTTPError as e:
+        print(f"HTTP error : {e.code} - {e.reason}")
+    except urllib.error.URLError as e:
+        print(f"URL Error : {e.reason}")
+    except Exception as e:
+        print(f"An unexpected error occured")
+    finally:
+        print("Execution Completed")
+
+read_url('https://deepmind.google/about/')
+
+
+## Write a function that attempts to parse a JSON string.
+## Use try, except, and finally blocks to handle JSONDecodeError if the string is not a valid JSON and print an appropriate message.
+
+import json
+def parse_json(json_str):
+    try:
+        data = json.loads(json_str)
+        
+        print("JSON Parsed Successsfully")
+        print("Parsed Data:" , data)
+
+    except json.JSONDecodeError as e:
+        print("Invalid JSON string")
+        print("Error: " , e)
+    
+    finally:
+        print("Execution completed.")
+
+
+parse_json('{"name": "Alok", "age": 22}')
+
+parse_json('{"name": "Alok", "age": 22')
